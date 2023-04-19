@@ -8,6 +8,8 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
 
 class CustomAdapter(var context: Context, var data:ArrayList<User>):BaseAdapter() {
     private class ViewHolder(row:View?){
@@ -41,9 +43,16 @@ class CustomAdapter(var context: Context, var data:ArrayList<User>):BaseAdapter(
         viewHolder.mTxtEmail.text = item.email
         viewHolder.mTxtidNumber.text = item.idNumber
         viewHolder.buttonupdate.setOnClickListener {
-
+            var ref = FirebaseDatabase.getInstance().getReference().child("Users/"+item.id)
+            ref.removeValue().addOnCompleteListener {
+                if (it.isSuccessful){
+                    Toast.makeText(context,"User deleted successfully",Toast.LENGTH_LONG).show()
+                }else{
+                    Toast.makeText(context,"User deleted successfully",Toast.LENGTH_LONG).show()
+                }
+            }
         }
-        viewHolder.buttondelete.setOnClickListener {
+        viewHolder.buttonupdate.setOnClickListener {
 
         }
         return view as View

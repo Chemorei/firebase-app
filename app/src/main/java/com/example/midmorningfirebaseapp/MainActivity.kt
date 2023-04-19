@@ -1,6 +1,7 @@
 package com.example.midmorningfirebaseapp
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -59,7 +60,8 @@ class MainActivity : AppCompatActivity() {
 
         }
         btnview.setOnClickListener {
-
+            var intent = Intent(this,UsersActivity::class.java)
+            startActivity(intent)
         }
     }
 }
